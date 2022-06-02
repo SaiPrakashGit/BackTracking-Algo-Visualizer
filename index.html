@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- JavaScript File that contains required font from Google CDN -->
+    <script src="font.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>BackTracking Algo. Visualizer</title>
+  </head>
+
+  <!-- Generate Puzzle Function is called after the page is completel loaded -->
+
+  <body onload="generatePuzzle()">
+    <!-- NavBar containing controls -->
+
+    <nav id="navbar">
+      <h1 class="logo">BackTracking Algorithm Visualizer</h1>
+      <ul>
+        <li id="clearBtn">Clear Puzzle</li>
+        <li id="generateBtn">Generate Puzzle</li>
+        <li>
+          <input type="checkbox" name="" id="speed" />
+          <label for="speed">Speed<i class="fas fa-angle-down"></i></label>
+          <ul>
+            <li data-value="Fast" class="active">Fast</li>
+            <li data-value="Average">Average</li>
+            <li data-value="Slow">Slow</li>
+          </ul>
+        </li>
+        <li id="visualizeBtn">VISUALIZE</li>
+      </ul>
+    </nav>
+    <br /><br /><br />
+
+    <!-- Hidden Container to show alerts -->
+
+    <div class="alert hidden"></div>
+
+    <!-- Hidden Audio element to play music while animating -->
+
+    <audio src="music/summer.mp3" class="hidden" id="audio"></audio>
+
+    <!-- Container that holds Sudoku Grid (9X9) -->
+
+    <table class="grid-container">
+      <tbody>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+        <tr class="row">
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+          <td><input type="text" maxlength="1" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Footer that displays text -->
+
+    <div class="footer">
+      <p>
+        Please note that the time taken for solving the Puzzle is minimal, it is
+        the Graphical Visualization to understand the Algorithm that takes time.
+      </p>
+    </div>
+
+    <!-- JavaScript File that contains the application logic -->
+
+    <script src="main.js"></script>
+  </body>
+</html>
